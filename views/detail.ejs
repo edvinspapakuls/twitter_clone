@@ -1,0 +1,56 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Twitter Clone NodeJS</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/tweets.css">
+  </head>
+
+  <div class="post">
+    <div class="post__avatar">
+      <img
+        src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
+        alt=""
+      />
+    </div>
+
+    <div class="post__body">
+      <div class="post__header">
+        <div class="post__headerText">
+          <h3>
+            Somanath Goudar
+            <span class="post__headerSpecial"
+              ><span class="material-icons post__badge"> verified </span>@somanathg</span
+            >
+          </h3>
+        </div>
+        <div class="post__headerDescription">
+          <p><%= t.text %> (<%= t.time %>)</p><!--tweet text-->
+          <form action="/delete-tweet" method="POST">
+          <button type="submit">Delete</button>
+          </form>
+        </div>
+      </div>
+      <img
+        src="<%= t.image %>"
+        alt=""
+      /><!--tweet image-->
+      <div class="post__footer">
+        <span class="material-icons"> repeat </span>
+        <a href="/like-tweet/<%= t.id %>">View Tweet</a>
+        <form action="/like-tweet" method="POST">
+        <button type="submit"><span class="material-icons"> favorite_border </span></button>
+        <input type="hidden" name="tweetId" value="<%= t.id %>">
+        </form>
+        <span class="material-icons"> publish </span>
+      </div>
+    </div>
+  </div>
