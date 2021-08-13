@@ -22,6 +22,7 @@
           <p><%= t.text %> (<%= t.time %>)</p><!--tweet text-->
           <form action="/delete-tweet" method="POST">
           <button type="submit">Delete</button>
+          <input type="hidden" name="tweetId" value="<%= t.id %>">
           </form>
         </div>
       </div>

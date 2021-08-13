@@ -13,6 +13,9 @@ module.exports = class Tweet {
         return db.execute('SELECT * FROM tweets')
       }
     static findById(id) {
-
+        return db.execute('SELECT * FROM tweets WHERE tweets.id = ?', [id])
+    }
+    static deleteById(id) {
+        return db.execute('DELETE FROM tweets WHERE id = ?', [id])
     }
 }

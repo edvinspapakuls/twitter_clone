@@ -3,7 +3,7 @@ const Tweet = require('../models/tweet')
 exports.getTweets = (req, res) => {
     Tweet.fetchAll()
     .then(([rows, fieldData]) => {
-        res.render('tweets', {tweet: rows})
+        res.render('tweets', {tweet: rows, isAuth: req.session.loggedIn})
     })
     .catch(err => console.log(err))
 }
@@ -37,15 +37,26 @@ let seconds = date_ob.getSeconds();
 
 exports.getViewTweet = (req, res) => {
     const tweetId = req.params.tweetId
-    Tweet.findById(tweetId, tweet => {
-        res.render('detail', {t: tweet})
+    Tweet.findById(tweetId)
+    .then(([tweet]) => {
+        res.render('detail', {t: tweet[0]})
     })
+    .catch(err => console.log(err))
 }
 
 exports.postLikedTweet = (req, res) => {
     const tweetId = req.body.tweetId
     console.log(tweetId)
     res.redirect('/')
+}
+
+exports.postDeleteTweet = (req, res) => {
+    const tweetId = req.body.tweetId
+    Tweet.deleteById(tweetId)
+    .then(() => {
+        console.log('Post '+tweetId+' was deleted!')
+    })
+    .catch(err => console.log(err))
 }
 
 exports.get404 = (req, res) => {

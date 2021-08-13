@@ -11,4 +11,6 @@ router.get('/like-tweet/:tweetId', tweetsController.getViewTweet)
 
 router.post('/like-tweet', tweetsController.postLikedTweet)
 
+router.post('/delete-tweet', tweetsController.postDeleteTweet)
+
 module.exports = router
